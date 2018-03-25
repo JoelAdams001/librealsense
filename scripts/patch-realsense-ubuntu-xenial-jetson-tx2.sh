@@ -29,12 +29,6 @@ require_package libssl-dev
 
 [ ! -d ${kernel_name} ] && git clone https://github.com/jetsonhacks/buildJetsonTX2Kernel.git && cd buildJetsonTX2Kernel && ./getKernelSources.sh && cd .. && cp -R /usr/src/kernel/${kernel_name} ./${kernel_name}
 
-#[ ! -d ${kernel_name} ] && \
-#git submodule update --init --recursive
-#cd buildJetsonTX2Kernel && \
-#sudo ./scripts/getKernelSources_noGUI.sh && \
-#sudo ./scripts/fixMakeFiles.sh && \
-#cd .. && cp -R /usr/src/kernel/${kernel_name} ./${kernel_name}
 echo -e "Starting to apply kernel patches and kernel building"
 cd ./${kernel_name}
 kernel_branch="master"
@@ -104,7 +98,7 @@ try_module_insert videobuf2-v4l2        ~/$LINUX_BRANCH/videobuf2-v4l2.ko       
 try_module_insert videobuf2-vmalloc     ~/$LINUX_BRANCH/videobuf2-vmalloc.ko     /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-vmalloc.ko
 try_module_insert videobuf2-memops      ~/$LINUX_BRANCH/videobuf2-memops.ko     /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-memops.ko
 try_module_insert uvcvideo              ~/$LINUX_BRANCH-uvcvideo.ko             /lib/modules/`uname -r`/kernel/drivers/media/usb/uvc/uvcvideo.ko
-try_module_insert videodev				~/$LINUX_BRANCH-videodev.ko 			/lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videodev.ko
+#try_module_insert videodev				~/$LINUX_BRANCH-videodev.ko 			/lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videodev.ko
 # try_module_insert hid_sensor_accel_3d 	~/$LINUX_BRANCH-hid-sensor-accel-3d.ko 	/lib/modules/`uname -r`/kernel/drivers/iio/accel/hid-sensor-accel-3d.ko
 # try_module_insert hid_sensor_gyro_3d	~/$LINUX_BRANCH-hid-sensor-gyro-3d.ko 	/lib/modules/`uname -r`/kernel/drivers/iio/gyro/hid-sensor-gyro-3d.ko
 
