@@ -84,7 +84,7 @@ echo -e "\e[32mCompiling v4l2-core modules\e[0m"
 sudo make -j -C $KBASE M=$KBASE/drivers/media/v4l2-core modules
 
 echo -e "Copy the patched modules to a sane location"
-sudo cp $KBASE/drivers/media/usb/uvc/uvcvideo.ko ~/$LINUX_BRANCH-uvcvideo.ko
+#sudo cp $KBASE/drivers/media/usb/uvc/uvcvideo.ko ~/$LINUX_BRANCH-uvcvideo.ko
 #sudo cp $KBASE/drivers/iio/accel/hid-sensor-accel-3d.ko ~/$LINUX_BRANCH-hid-sensor-accel-3d.ko
 #sudo cp $KBASE/drivers/iio/gyro/hid-sensor-gyro-3d.ko ~/$LINUX_BRANCH-hid-sensor-gyro-3d.ko
 mkdir -p ~/$LINUX_BRANCH
@@ -94,10 +94,10 @@ sudo cp $KBASE/drivers/media/usb/uvc/*.ko ~/$LINUX_BRANCH/
 echo -e "\e[32mPatched kernels modules were created successfully\n\e[0m"
 
 # Load the newly-built modules
-try_module_insert videobuf2-core        ~/$LINUX_BRANCH/videobuf2-core.ko       /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-core.ko
-try_module_insert videobuf2-v4l2        ~/$LINUX_BRANCH/videobuf2-v4l2.ko       /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-v4l2.ko
+#try_module_insert videobuf2-core        ~/$LINUX_BRANCH/videobuf2-core.ko       /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-core.ko
+#try_module_insert videobuf2-v4l2        ~/$LINUX_BRANCH/videobuf2-v4l2.ko       /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-v4l2.ko
 try_module_insert videobuf2-vmalloc     ~/$LINUX_BRANCH/videobuf2-vmalloc.ko     /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-vmalloc.ko
-try_module_insert videobuf2-memops      ~/$LINUX_BRANCH/videobuf2-memops.ko     /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-memops.ko
+#try_module_insert videobuf2-memops      ~/$LINUX_BRANCH/videobuf2-memops.ko     /lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videobuf2-memops.ko
 try_module_insert uvcvideo              ~/$LINUX_BRANCH/uvcvideo.ko             /lib/modules/`uname -r`/kernel/drivers/media/usb/uvc/uvcvideo.ko
 #try_module_insert videodev				~/$LINUX_BRANCH-videodev.ko 			/lib/modules/`uname -r`/kernel/drivers/media/v4l2-core/videodev.ko
 # try_module_insert hid_sensor_accel_3d 	~/$LINUX_BRANCH-hid-sensor-accel-3d.ko 	/lib/modules/`uname -r`/kernel/drivers/iio/accel/hid-sensor-accel-3d.ko
